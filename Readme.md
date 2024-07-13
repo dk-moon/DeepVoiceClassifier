@@ -1,4 +1,4 @@
-# MFCC-FastViT
+# Deep Voice Classifier
 ## Our Project
 - Deep Fake Voice Detection
 
