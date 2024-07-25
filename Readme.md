@@ -2,24 +2,65 @@
 
 ## Our Project
 
-- Development of a classifier for Deep voice detection
+### Project Overview
 
-## Project Step
+- The proliferation of deep learning and audio synthesis technologies has led to the creation of highly realistic artificial voices, known as deep fake voices. These synthetic voices, which can closely mimic real human speech, pose significant challenges in areas like security, authentication, and media integrity. The need to effectively distinguish between authentic human voices and deep fake voices is more critical than ever.
 
-### Train
+### Project Objectives
 
- 1. Load wav or mp3 voice data: Start by loading your audio data in wav or mp3 format.
- 2. Convert audio data to mel-spectrogram image: Transform the audio data into mel-spectrogram images, which represent the audio frequencies over time.
- 3. Prepare X and y data: Use the mel-spectrogram images as the X data (features) and assign the corresponding class (True for real human voice, False for deep fake voice) as the y data (labels).
- 4. Model Training: Train the Vision Transformer model using the prepared X and y data.
- 5. Model Evaluation: Evaluate the trained model using validation or test data to check its performance.
+- The primary goal of this project is to develop an accurate and reliable classifier capable of detecting deep fake voices. To achieve this, we will harness advanced machine learning techniques and leverage the capabilities of the Vision Transformer (ViT) model. By converting audio signals into mel-spectrogram images, we can apply sophisticated visual classification methods to identify and differentiate between real and fake voices.
+
+### Key Steps in the Project
+
+1. Library Import:
+
+    - Import necessary libraries such as numpy, pandas, torch, torchaudio, matplotlib, tensorflow, and any others required for processing audio and training the model.
+
+2. Load and Process WAV File:
+
+    - Load your audio data in WAV formar using torchaudio for consistency and preprocesing.
+
+3. Audio Splitting and Noise Reduction:
+
+    - Use an audio separation model to separate human voice from background noise, enhancing the clarity of the audio data.
+
+4. Segment Audio into 1-Second Intervals:
+
+    - Divide the cleaned audio data into 1-second segments for detailed analysis and feature extraction.
+
+5. Convert Segments to Mel-Spectrograms:
+
+    - Convert each 1-second audio segment into a mel-spectrogram using torchaudio.
+
+6. Vision Transformer (ViT) Configuration and Training:
+
+    - Prepare and train the Vision Transformer model using the mel-spectrograms as input data.
+
+7. Model Evaluation:
+
+    - Evaluate the trained model using validation or test data to check its performance.
+
+8. Model Deployment in ONNX Format:
+
+    - Convert the trained model to ONNX format for deployment.
 
 ### Inference
 
- 1. Load wav or mp3 voice data: Load the audio data you want to classify.
- 2. Convert audio data to mel-spectrogram image: Transform the audio data into a mel-spectrogram image.
- 3. Input mel-spectrogram image to model: Pass the mel-spectrogram image into the trained Vision Transformer model.
- 4. Predict class: The model will predict the class, indicating whether the voice is a deep fake or a real human voice.
+ 1. Load WAV or MP3 Voice Data:
+
+    - Load the audio data you want to classify using torchaudio. This step ensures that the audio data is in a format suitable for further processing.
+
+ 2. Convert Audio Data to Mel-Spectrogram Image:
+
+    - Transform the audio data into a mel-spectrogram image. This involves segmenting the audio if necessary and then applying the mel-spectrogram transformation.
+
+ 3. Input Mel-Spectrogram Image to Model:
+
+    - Pass the mel-spectrogram image into the trained Vision Transformer (ViT) model. The mel-spectrograms need to be resized and possibly normalized to match the input requirements of the ViT model.
+
+ 4. Predict Class:
+
+    - Use the model to predict the class of each mel-spectrogram segment. The model will output the probability or class indicating whether the voice is a deep fake or a real human voice.
 
 ## Introduce DeepVoiceClassifier Flow
 
@@ -39,10 +80,21 @@ Previous studies have explored various methods for deep fake voice detection, in
 
 The core of our approach involves the following steps:
 
- 1. Feature Extraction: Audio signals are divided into 1-second segments and converted into mel-spectrogram images.
- 2. Model Architecture: The FastViT model is employed for its efficiency in handling visual data, adapted here for mel-spectrogram images.
- 3. Training: The model is trained on a labeled dataset comprising both real human voices and deep fake voices.
- 4. Inference: The trained model is used to classify new audio samples, providing predictions on whether they are real or fake.
+1. Feature Extraction:
+
+    • Audio signals are divided into 1-second segments and converted into mel-spectrogram images.
+
+2. Model Architecture:
+
+    • The FastViT model is employed for its efficiency in handling visual data, adapted here for mel-spectrogram images.
+
+3. Training:
+
+    • The model is trained on a labeled dataset comprising both real human voices and deep fake voices.
+
+4. Inference:
+
+    • The trained model is used to classify new audio samples, providing predictions on whether they are real or fake.
 
 ### Experiment
 
